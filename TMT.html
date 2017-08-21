@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title> TMT</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/jstat.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+
+function printTextArea() {
+        childWindow = window.open('','childWindow','location=yes, menubar=yes, toolbar=yes');
+        childWindow.document.open();
+        childWindow.document.write('<html><head></head><body>');
+        childWindow.document.write(document.getElementById('log').value.replace(/\n/gi,'<br>'));
+        childWindow.document.write('</body></html>');
+        childWindow.print();
+        childWindow.document.close();
+        childWindow.close();
+      }
+
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Anupam Singh</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="about.html">
+    <span class="fa fa-user"></span>
+     
+    About
+  </a>
+</li>
+<li>
+  <a href="https://anupamsingh81.github.io/blog/">
+    <span class="fa fa-rss"></span>
+     
+    Blog
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-bars"></span>
+     
+    Miscellaneous
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://www.researchgate.net/profile/Anupam_Singh9">My Research gate profile</a>
+    </li>
+    <li>
+      <a href="https://www.researchgate.net/publication/289519661_Comparison_of_ICH_score_and_other_Machine_algorithms_for_prediction_of_mortality_in_Intracranial_hemorrhage">Machine learning in prediction of outcome in intracranial hemorrhage</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:anupampom@gmail.com">
+    <span class="fa fa-envelope-o"></span>
+     
+    Contact me
+  </a>
+</li>
+<li>
+  <a href="https://github.com/anupamsingh81">
+    <span class="fa fa-github"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/anupampom">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://stackoverflow.com/users/4954115/anupam?tab=profile">
+    <span class="fa fa-stack-overflow"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore" style="color:blue" >EXERCISE TEST CALCULATOR</h1>
+<br>
+
+</div>
+
+
+
+ Age :<input type="text" id="age" placeholder="40" > 
+ Gender : <input type="radio" name="gender" value="male" checked > Male <input type="radio" name="gender" value="female"  > Female
+        
+        <br> <br>
+    Pre-Test Symptoms : <input type="radio" name="sym" value="typ"  > Typical Angina <input type="radio" name="sym" value="atyp"  > Atypical Angina<input type="radio" name="sym" value="non" checked > Non specific Chest Pain <br><br>
+        
+        
+         Enter MET :<input type="text" id="MET" placeholder="7.2" >
+      
+    Exercise time minutes :<input type="text" id="minutes" placeholder="6" > seconds : <input type="text" id="seconds"placeholder="30" ><br> <br>
+        
+        Enter Reason for termination :<input type="radio" name="reason" value ="criteria" checked > Test criteria achieved
+                   <input type="radio" name="reason" value ="ECG"  > ECG changes 
+        <input type="radio" name="reason" value ="clinical"  >  Patient request
+        <input type="radio" name="reason" value ="equipment"  > Equipment malfunction <br> <br>
+
+        
+    Symptoms during test : <input type="radio" name="symptoms" value ="None" checked > None 
+     <input type="radio" name="symptoms" value ="ASL" > Angina self limiting 
+            
+<input type="radio" name="symptoms" value ="AT"  > Angina or other cardiac symptoms leading to termination
+<input type="radio" name="symptoms" value ="Other"> Non-cardiac symptoms <br><br>
+
+    
+    Baseline Heart Rate :<input type="text" id="HRB" placeholder="80" > 
+    Peak Heart Rate :<input type="text" id="HRM" placeholder="160" >
+    Heart Rate in recovery at 2 minutes  :<input type="text" id="HRR" placeholder="110" > <br><br>
+    Baseline ST segment :<input type=text id="STB"placeholder="0.3" > 
+    ST segment at peak exercise(in mm) :<input type="text" id="STM" placeholder="-1.2" > 
+    ST segment at  recovery(in mm) :<input type="text" id="STR" placeholder="0.1"> <br><br>
+    ST slope at peak exercise(in mv/sec) :<input type="text" id="slope" placeholder="0.8" > Enter name of Reference Lead :<input type="text" id="reference"placeholder="V5" ><br><br>
+        Baseline Systolic BP :<input type="text" id="bbp" placeholder="120" > Peak exercise Systolic BP <input type="text" id="mbp"placeholder="180" > <br> <br>
+   
+    <input type="button" id="calc" value ="TMT REPORT"  >    
+    <input type="button" id="reset" value ="reset"  >
+                  
+<input type="button" onclick="printTextArea()" value="Print Report"/>
+
+
+
+<textarea id="log" style= "width: 100%; height: 250px; " ></textarea>
+
+</div>
+
+<script>
+
+
+$(document).ready(function(){ 
+function write_log(s) {
+       $("#log").val($("#log").val() + s)
+      $("#log").scrollTop($("#log")[0].scrollHeight);
+    }
+	
+$(".reset").bind("click", function() {
+  $("input[type=text], textarea").val("");
+});
+
+
+$("#reset").on("click", function(){
+
+
+$('#age').val('');
+$('#gender').val('');
+$('#minutes').val('');
+$('#seconds').val('');
+$('#symptoms').val('');
+$('#HRB').val('');
+$('#HRM').val('');
+$('#HRR').val('');
+$('#STB').val('');
+$('#STM').val('');
+  $('#STR').val('');
+   $('#slope').val(''); 
+                 $('#log').val('');
+                $('#MET').val('');
+                $('#reason').val('')
+                $('#bbp').val('');
+                $('#mbp').val('');
+$('#sym').val('');
+$('#reference').val('');
+
+
+
+                
+            })
+            
+
+
+$("#calc").on("click", function(){
+
+
+//var str = "welcome to TMT interpretation";
+     // var hl = str.bold();
+     // write_log(''+hl+'.');
+      
+   var age = parseFloat( $('#age').val());
+var gender = $("input[name='gender']:checked").val();
+   var symptoms = $("input[name='symptoms']:checked").val();     
+      var pain = $("input[name='sym']:checked").val();     
+                  
+var reason = $("input[name='reason']:checked").val(); 
+
+var minutes = parseFloat($('#minutes').val());
+var seconds = parseFloat($('#seconds').val());
+
+var HRB = parseFloat($('#HRB').val());
+var HRM = parseFloat($('#HRM').val());
+var HRR = parseFloat($('#HRR').val());
+var STB = parseFloat($('#STB').val());
+var STM = parseFloat($('#STM').val());
+  var STR  = parseFloat($('#STR').val());
+   var slope = parseFloat($('#slope').val()); 
+     var met = parseFloat($('#MET').val()); 
+      var bbp = parseFloat($('#bbp').val());
+       var mbp = parseFloat($('#mbp').val());
+var reference =  $('#reference').val();
+      var THR = 0.85*(220 - age);
+
+var sex = gender
+      
+      //var delta = HRM - THR ;
+      
+      var Reserve = ((HRM - HRB)/((220-age)-HRB) )*100
+      
+     var Reserve = +Reserve.toFixed(2)
+      
+      var ETM = minutes + seconds/60 ;
+      
+      var Recovery = HRM - HRR ;
+      
+      var predmetmale = 14.7 - 0.11*age ;
+     var predmetmale = +predmetmale.toFixed(2)
+      var predmetfemale = 14.7 - 0.13*age ;
+     var  predmetfemale = +predmetfemale.toFixed(2)
+      
+      var metdiffmale = predmetmale - met ;
+      var metdifffemale = predmetfemale -met ;
+      
+      var anginaindex = 0
+       if(symptoms=="none")(anginaindex = 0 )
+      if(symptoms=="ASL")(anginaindex = 1 )
+      if(symptoms=="AT")(anginaindex = 2 )
+          
+
+      var delst = STM - STB
+      var delstr = STR - STB
+      var dukescore = ETM + 5*delst - 4*anginaindex
+      var dukescore = dukescore.toFixed(2)
+      
+      var baseproduct = bbp*HRB
+      var peakproduct = mbp*HRM
+
+
+      
+      write_log("\n") ;
+      
+       write_log('Tread Mill Testing: Exercise ECG INTERPRETATION coded by Anupam Kumar Singh , MD .') ;
+    
+      write_log("\n") ;
+      
+      write_log("\n") ;
+
+write_log('The reference lead is '+reference+' .The baseline ST amplitude is '+STB+ ' . The ST amplitude at peak is '+STM+ '.'+"\n")
+
+
+      
+      var dpreserve = peakproduct - baseproduct
+    
+      write_log('The patient exercised for '+minutes+' minutes '+seconds+' seconds and ' + met + ' METS under Bruce Protocol'+"\n")
+      
+     if (gender=="male")  write_log('The predicted METS for this patient is ' +predmetmale + ' and he exercised till ' + (met/predmetmale *100).toFixed(2) + ' percent of his exercise capacity'+ "\n")
+     
+      if (gender=="female")  write_log('The predicted METS for this patient is ' +predmetfemale +' and she exercised till ' + (met/predmetfemale *100).toFixed(2) + ' percent of her exercise capacity'+"\n")
+      
+      write_log('The Peak double product is '+peakproduct+'.')
+      if(peakproduct >=30000){
+          write_log('This suggests High hemodynamic response and lower chances of coronary disease'+"\n")
+      }
+        if(peakproduct >=25000 && peakproduct <30000 ){
+            write_log('This suggests High Intermediate hemodynamic response'+"\n")
+        }
+      if(peakproduct >=20000 && peakproduct <25000 )
+          {
+              write_log('This suggests Intermediate hemodynamic response'+"\n")
+          }
+          if(peakproduct >=15000 && peakproduct <20000 )
+          {
+              write_log('This suggests low Intermediate hemodynamic response'+"\n")
+          } 
+        if(peakproduct >=10000 && peakproduct <15000 ){
+            write_log('This suggests low hemodynamic response'+"\n")
+        }
+          
+            write_log('The Double product reserve is '+ dpreserve+'.')
+            if(dpreserve <10000 ){
+                write_log('It is less than ten thousand and indicates a bad prognosis'+"\n")
+            }
+      else{
+         write_log('It is more than ten thousand and is adequate '+"\n")
+      }
+
+      write_log('The test was terminated due to ')
+      if (reason=="criteria")write_log(' Meeting test criteria'+"\n")
+       if (reason=="ECG")write_log(' ECG changes'+"\n")
+       if (reason=="clinical")write_log(' Patient symptoms'+"\n")
+       if (reason=="equipment")write_log(' Equipment dysfunction'+"\n")
+       
+       
+     /* write_log('The THR is '+THR+'.'+"\n");
+       write_log('The HRM is '+HRM+'.'+"\n");
+       write_log('The symptom is '+symptoms+'.'+"\n");
+       write_log('The gender is '+gender+'.'+"\n"); */
+      if ((HRM -THR)>=0 ){
+          write_log('THR was achieved .'+"\n")
+      }
+       else{write_log('THR was not achieved .'+"\n")}
+      
+      
+      
+      if ((HRM -THR)<=0 && symptoms=="None"){
+          write_log(' patient has chronotropic incompetence and Heart rate reserve is '+Reserve +"\n")
+      }
+      
+      if((HRM -THR)<=0 && symptoms=="Other"){ 
+          write_log('Exercise test was prematurely terminated due to patients symptoms indicating poor exercise tolerance'+"\n")
+      }
+       if((HRM -THR)<=0 && symptoms=="ASL") {
+          write_log('Exercise test was prematurely terminated due to ECG changes/ Angina'+"\n")
+      }
+       if((HRM -THR)<=0 && symptoms=="AT") {
+          write_log('Exercise test was prematurely terminated due to Angina/ECG changes'+"\n")
+      }
+
+write_log('The reference lead is '+reference+' .The baseline ST amplitude is '+STB+ ' . The ST amplitude at peak is '+STM+ '.'+"\n")
+
+         
+    if(STB< -0.5)(write_log('There is resting ST depression and it should be carefully interpreted '+"\n" ))
+        
+        if (delst >= 1 ){
+          write_log('Suggestive of significant ST elevation . Stop TMT .'+"\n" )
+          
+      }
+
+if (delst <= -1 ){
+          write_log('Suggestive of significant ST DEPRESSION AND ECG CHANGES .'+"\n" )
+          
+      }
+      
+       if (delst > 0 && delst <1 ){
+          write_log('Suggestive of non specific ST elevation .'+"\n" )
+          
+      }
+      
+      if (delst < 0 && delst > -1 ){
+          write_log('No Significant ST depression and Exercise induced ECG changes'+"\n" )
+          
+      }
+      if(delst <=-2.5) {
+          if(slope>0 && slope <1.5)(write_log('Slow upsloping ST depression of more than 2.5 mm is seen suggesting moderately positive test'+"\n"))
+          else(write_log("Severe ST depression and strongly positive test "+"\n"))
+          
+          if (delstr <= -1) (write_log('Persistent ST depression'+"\n"))
+              
+      }
+  
+  if (delst <=-1 && delst > -2.5  ){
+      write_log('Significant ST depression and Exercise induced ECG changes'+"\n")
+                if ( delst >-1.5 && slope < 0){
+      write_log('Downsloping or flat ST depression of less than 1.5 mm is seen suggesting mildly positive test '+"\n")
+                }
+               else if(delst <= -1.5 && slope <0 ){
+          write_log('Downsloping or flat ST depression of more than 1.5 mm is seen suggesting moderately positive test'+"\n") 
+               }
+      else if(delst <= -1.5 && slope < 1.5 ){
+          write_log('Slow upsloping ST depression of more than 1.5 mm is seen suggesting mildly positive test'+"\n") 
+               }
+      else if(delst <= -1 && delst > -1.5 && slope < 1.5 ){
+          write_log('Slow upsloping ST depression between 1-1.5 mm is seen suggesting Borderline positive test'+"\n") 
+               }
+           else {
+          write_log('Rapid upsloping ST depression is seen and Borderline positive test'+"\n")
+       
+          if (delstr <= -1) (write_log('Persistent ST depression at recovery'+"\n"))
+          
+          
+        }
+  }
+      
+   
+      if (delst <0)
+     {
+              write_log('The duke score is '+dukescore+"\n");
+              
+               if(dukescore<=-10 && gender =="male"){
+                  write_log('Patient is at high cardiac risk.The duke score is '+dukescore+ ' and percentage of 1 year mortality is 8.3 . The percentage of no angiographic diasease,single vessel disease,double vessel disease, Triple vessel /left main disease are 1.8,9.1,17.5 and 91.1 respectively'+"\n")
+                  }
+              if(dukescore<=-10 && gender =="female"){
+                  write_log('Patient is at high cardiac risk.The duke score is '+dukescore+ ' and percentage of 1 year mortality is 1.8 . The percentage of no angiographic diasease,single vessel disease,double vessel disease, Triple vessel /left main disease are 10.8,18.9,24.3 and 46 respectively'+"\n")
+                   }
+	if(dukescore>=-10 && dukescore<4 && gender =="male"){
+                  write_log('Patient is at moderate cardiac risk.The duke score is '+dukescore+ ' and percentage of 1 year mortality is 2.9 . The percentage of no angiographic diasease,single vessel disease,double vessel disease, Triple vessel /left main disease are 17.8,15.6,27.9 and 38.7 respectively'+"\n")
+                   }
+	if(dukescore>=-10 && dukescore<4 && gender =="female"){
+                  write_log('Patient is at moderate cardiac risk.The duke score is '+dukescore+ ' and percentage of 1 year mortality is 1.1 . The percentage of no angiographic diasease,single vessel disease,double vessel disease, Triple vessel /left main disease are 65.1,14.2,8.3 and 12.4 respectively'+"\n")
+                   }
+        
+       if(dukescore>=4 && gender =="male"){
+                  write_log('Patient is at low cardiac risk.The duke score is '+dukescore+ ' and percentage of 1 year mortality is 0.9 . The percentage of no angiographic diasease,single vessel disease,double vessel disease, Triple vessel /left main disease are 52.6,22.4,13.6 and 11.4 respectively'+"\n")
+                   }
+          
+              if(dukescore>=4 && gender =="female"){
+                  write_log('Patient is at low cardiac risk.The duke score is '+dukescore+ ' and percentage of 1 year mortality is 0.5 . The percentage of no angiographic diasease,single vessel disease,double vessel disease, Triple vessel /left main disease are 80.9,9.4,6.2 and 3.4 respectively'+"\n")
+                   }
+             var sthr =  (Math.abs(delst)/(HRM-HRB))*100
+            var sthr = +sthr.toFixed(2)
+             
+             write_log('ST/HR index is ' +sthr+ '.')
+             if(sthr>=1.6)(write_log('ST/HR index is greater than 1.6 uV/bpm and indicates a 90% risk of CAD on angiography'+"\n"))
+            if(sthr<1.6)(write_log('ST/HR index is lesser than 1.6 uV/bpm and suggestive of a normal angiographic diagnosis'+"\n"))
+        if(sthr>=3.3)(write_log('ST/HR index is greater than 3.3 uV/bpm and indicates a 90% risk of CAD on angiography'+"\n")) 
+            
+            write_log('Patient had adequate BP response'+"\n")
+                             write_log('Patient had no arrhythmia'+"\n")        
+
+     }
+
+if(mbp >=210 && gender=="male" ){
+            write_log('This suggests Exaggerated systolic Response'+"\n")
+        }
+
+
+ if(mbp >=190 && gender=="female" ){
+            write_log('This suggests Exaggerated systolic Response'+"\n")
+        }
+
+
+
+
+
+       write_log('The Heart rate recovery at 2 minutes is ' + Recovery + ' beats per minute'+ "\n")   
+       if(Recovery <=22)(write_log('The recovery is abnormal for this patient and a marker of cardiac risk.'+ "\n"))
+           else(write_log('The recovery is normal for this patient. '+ "\n"))
+           
+        write_log('The Heart rate reserve is ' + Reserve + ' percent'+"\n")   
+       if(Reserve <= 80 )(write_log('The heart rate reserve is less than eighty percent and abnormal for this patient suggesting chronotropic incompetence and a marker of cardiac risk.'+ "\n"))
+           else(write_log('The Heart rate reserve is normal for this patient.'+ "\n"))   
+        
+          if (gender=="male") { write_log('The difference between observed and predicted METS is '+metdiffmale.toFixed(2)+ "\n")
+                              if(metdiffmale > 3 )(write_log)('The difference is greater than three METS and independent marker of cardiac risk '+ "\n")
+                            else(write_log)('The difference is less than three METS and normal for his age '+ "\n")      }
+          if (gender=="female") { write_log('The difference between observed and predicted METS is '+metdifffemale.toFixed(2)+ "\n")
+                              if(metdifffemale > 3 )(write_log)('The difference is greater than three METS and independent marker of cardiac risk '+ "\n")
+             
+                            else(write_log)('The difference is less than three METS and normal for her age '+ "\n")    } 
+      
+      write_log("\n") ;
+      
+      write_log("\n") ;
+      
+
+function pretest(age,sex,pain,sen,spec){
+
+var ptp = 0
+
+if(age <40 && sex=="male" && pain == "non"){ var ptp = 4 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "non"){ var ptp = 13 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "non"){ var ptp = 20 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "non"){ var ptp = 27 }
+
+
+
+
+if(age <40 && sex=="female" && pain == "non"){ var ptp = 2 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "non"){ var ptp = 3 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "non"){ var ptp = 7 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "non"){ var ptp = 14 }
+
+
+
+if(age <40 && sex=="female" && pain == "atyp"){ var ptp = 12 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "atyp"){ var ptp = 22 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "atyp"){ var ptp = 31 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "atyp"){ var ptp = 51 }
+
+
+if(age <40 && sex=="male" && pain == "atyp"){ var ptp = 34 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "atyp"){ var ptp = 51 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "atyp"){ var ptp = 65 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "atyp"){ var ptp = 72 }
+
+
+
+if(age <40 && sex=="male" && pain == "typ"){ var ptp = 76 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "typ"){ var ptp = 87 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "typ"){ var ptp = 93 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "typ"){ var ptp = 94 }
+
+
+if(age <40 && sex=="female" && pain == "typ"){ var ptp = 26 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "typ"){ var ptp = 55 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "typ"){ var ptp = 73 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "typ"){ var ptp = 86 }
+
+
+var nlr = (100 -sen)/spec
+
+var plr = sen/(100 - spec)
+
+var ppv = 100*plr*ptp /(100 +(plr-1)*ptp)
+
+var npv = 100*nlr*ptp /(100 +(nlr-1)*ptp)
+
+
+return [ptp,ppv,npv]
+
+
+}
+
+function pretesta(age,sex,pain,sen,spec){
+
+var ptp = 0
+
+if(age <40 && sex=="male" && pain == "non"){ var ptp = 17.7 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "non"){ var ptp = 24.8 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "non"){ var ptp = 33.6 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "non"){ var ptp = 43.7 }
+
+if(age >=70 && age<80 && sex=="male" && pain == "non"){ var ptp = 54.4 }
+if(age >80 && sex=="male" && pain == "non"){ var ptp = 64.6 }
+
+
+
+
+if(age <40 && sex=="female" && pain == "non"){ var ptp = 5.3 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "non"){ var ptp = 8 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "non"){ var ptp = 11.7 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "non"){ var ptp = 16.9 }
+
+if(age >=70 && age<80 && sex=="female" && pain == "non"){ var ptp = 23.8 }
+if(age >80 && sex=="female" && pain == "non"){ var ptp = 32.3 }
+
+
+
+
+if(age <40 && sex=="female" && pain == "atyp"){ var ptp = 9.6 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "atyp"){ var ptp = 14 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "atyp"){ var ptp = 20 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "atyp"){ var ptp = 27.7 }
+
+if(age >=70 && age<80 && sex=="female" && pain == "atyp"){ var ptp = 37 }
+if(age >80 && sex=="female" && pain == "atyp"){ var ptp = 47.4 }
+
+
+
+if(age <40 && sex=="male" && pain == "atyp"){ var ptp = 28.9 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "atyp"){ var ptp = 38.4 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "atyp"){ var ptp = 48.9 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "atyp"){ var ptp = 59.4 }
+
+if(age >=70 && age<80 && sex=="male" && pain == "atyp"){ var ptp = 69.2 }
+if(age >80 && sex=="male" && pain == "atyp"){ var ptp = 77.5 }
+
+
+
+
+if(age <40 && sex=="male" && pain == "typ"){ var ptp = 59.1 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "typ"){ var ptp = 68.9 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "typ"){ var ptp = 77.3 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "typ"){ var ptp = 83.9 }
+
+if(age >=70 && age<80 && sex=="male" && pain == "typ"){ var ptp = 88.9 }
+if(age >80 && sex=="male" && pain == "typ"){ var ptp = 92.5 }
+
+
+
+if(age <40 && sex=="female" && pain == "typ"){ var ptp = 27.5 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "typ"){ var ptp = 36.7 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "typ"){ var ptp = 47.1 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "typ"){ var ptp = 57.7 }
+
+if(age >=70 && age<80 && sex=="female" && pain == "typ"){ var ptp = 67.7 }
+if(age >80 && sex=="female" && pain == "typ"){ var ptp = 76.3 }
+
+var nlr = (100 -sen)/spec
+
+var plr = sen/(100 - spec)
+
+var ppv = 100*plr*ptp /(100 +(plr-1)*ptp)
+
+var npv = 100*nlr*ptp /(100 +(nlr-1)*ptp)
+
+
+return [ptp,ppv,npv]
+
+
+
+
+}
+
+function regress(age,sex,pain,sen,spec){
+
+var a = age 
+
+var b = 0
+var c = 0
+var d = 0
+
+if(sex=="male"){var b=1}
+if(pain=="typ"){var c=1}
+
+if(pain=="atyp"){var d=1}
+
+
+var ptplo = -4.37+0.03*a + 1.124*b + 1.378*c + 0.322*d
+
+var ptphi = -4.37+0.05*a + 1.556*b + 2.43*c + 0.951*d
+
+
+
+var ptpmod = -4.37+0.04*a + 1.34*b + 1.91*c + 0.64*d
+
+var prptplo = 100*(1/(1+Math.exp(-ptplo))).toFixed(3)
+
+var prptpmod = 100*(1/(1+Math.exp(-ptpmod))).toFixed(3)
+
+var prptphi = 100*(1/(1+Math.exp(-ptphi))).toFixed(3)
+
+
+var nlr = (100 -sen)/spec
+
+var plr = sen/(100 - spec)
+
+var ppvhi = 100*plr*prptphi /(100 +(plr-1)*prptphi)
+var npvhi = 100*nlr*prptphi /(100 +(nlr-1)*prptphi)
+
+var ppvlo = 100*plr*prptplo /(100 +(plr-1)*prptplo)
+
+var npvlo = 100*nlr*prptplo /(100 +(nlr-1)*prptplo)
+
+var ppvmod = 100*plr*prptpmod /(100 +(plr-1)*prptpmod)
+
+var npvmod = 100*nlr*prptpmod /(100 +(nlr-1)*prptpmod)
+
+
+
+
+return [prptplo,prptpmod,prptphi,ppvlo,ppvmod,ppvhi,npvlo,npvmod,npvhi]
+
+}
+
+      var df = pretest(age = age,sex=gender,pain=pain,sen=65,spec=75)
+var dg = pretesta(age = age,sex=gender,pain=pain,sen=65,spec=75)
+var dh = regress(age = age,sex=gender,pain=pain,sen=65,spec=75)
+
+
+if (delst <= -1 ){
+     write_log('The Test is Positive .The prior test probability  of significant CAD on Coronary Angiography taking into account patient age,sex and symptoms according to Diamond-Forrester Model is '+df[0]+' percent and post test probability has increased to '+df[1].toFixed(2)+' percent .'+"\n")  
+
+ write_log('The prior  probability  according to updated Diamond-Forrester Model used in European Society of Cardiology Guidelines[2013] is '+dg[0]+' percent and post test probability has increased to '+dg[1].toFixed(2)+' percent .'+"\n")  
+
+  write_log('The prior risk according to Random Effects Regreesion Model used by T Genders et al[2013] is '+dh[1].toFixed(2)+'('+dh[0].toFixed(2)+'-'+dh[2].toFixed(2)+') percent with and post test probability has increased to '+dh[4].toFixed(2)+'('+dh[3].toFixed(2)+'-'+dh[5].toFixed(2)+') percent .'+"\n")  
+
+
+      }
+
+if (delst > -1 ){
+     write_log('The Test is Negative .The prior test probability of significant CAD on Coronary Angiography taking into account patient age,sex and symptoms according to Diamond-Forrester Model assuming a sensitivity of 65 percent and specificity of 75% for treadmill exercise  is '+df[0]+' percent and post test probability has decreased to '+df[2].toFixed(2)+' percent .'+"\n")  
+
+ write_log('The prior  probability  according to updated Diamond-Forrester Model used in European Society of Cardiology Guidelines[2013] is '+dg[0]+' percent and post test probability has decreased to '+dg[2].toFixed(2)+' percent .'+"\n")  
+
+  write_log('The prior risk according to Random Effects Regreesion Model used by T Genders et al[2013] is '+dh[1].toFixed(2)+'('+dh[0].toFixed(2)+'-'+dh[2].toFixed(2)+') percent with and post test probability has decreased to '+dh[7].toFixed(2)+'('+dh[6].toFixed(2)+'-'+dh[8].toFixed(2)+') percent .'+"\n")  
+
+
+      }
+      
+          })   
+  })
+
+</script>
+
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
+
+

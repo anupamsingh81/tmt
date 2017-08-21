@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title> Pre Test Probability </title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/jstat.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+
+function printTextArea() {
+        childWindow = window.open('','childWindow','location=yes, menubar=yes, toolbar=yes');
+        childWindow.document.open();
+        childWindow.document.write('<html><head></head><body>');
+        childWindow.document.write(document.getElementById('log').value.replace(/\n/gi,'<br>'));
+        childWindow.document.write('</body></html>');
+        childWindow.print();
+        childWindow.document.close();
+        childWindow.close();
+      }
+
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Anupam Singh</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="about.html">
+    <span class="fa fa-user"></span>
+     
+    About
+  </a>
+</li>
+<li>
+  <a href="https://anupamsingh81.github.io/blog/">
+    <span class="fa fa-rss"></span>
+     
+    Blog
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-bars"></span>
+     
+    Miscellaneous
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://www.researchgate.net/profile/Anupam_Singh9">My Research gate profile</a>
+    </li>
+    <li>
+      <a href="https://www.researchgate.net/publication/289519661_Comparison_of_ICH_score_and_other_Machine_algorithms_for_prediction_of_mortality_in_Intracranial_hemorrhage">Machine learning in prediction of outcome in intracranial hemorrhage</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:anupampom@gmail.com">
+    <span class="fa fa-envelope-o"></span>
+     
+    Contact me
+  </a>
+</li>
+<li>
+  <a href="https://github.com/anupamsingh81">
+    <span class="fa fa-github"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/anupampom">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://stackoverflow.com/users/4954115/anupam?tab=profile">
+    <span class="fa fa-stack-overflow"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore" style="color:blue" >OBSTRUCTIVE CAD PROBABILITY CALCULATOR</h1>
+<br>
+
+</div>
+
+
+
+ Age :<input type="text" id="age" placeholder="40" > <br>
+ Gender : <input type="radio" name="gender" value="male" checked > Male <input type="radio" name="gender" value="female"  > Female
+        
+        <br> <br>
+    Pre-Test Symptoms : <input type="radio" name="sym" value="typ"  > Typical Angina <input type="radio" name="sym" value="atyp"  > Atypical Angina<input type="radio" name="sym" value="non" checked > Non specific Chest Pain <br><br>
+        
+        
+         
+   
+    <input type="button" id="calc" value ="Calculate Risk"  >    
+    <input type="button" id="reset" value ="reset"  >
+                  
+<input type="button" onclick="printTextArea()" value="Print Report"/>
+
+
+
+<textarea id="log" style= "width: 100%; height: 250px; " ></textarea>
+
+</div>
+
+<script>
+
+
+$(document).ready(function(){ 
+function write_log(s) {
+       $("#log").val($("#log").val() + s)
+      $("#log").scrollTop($("#log")[0].scrollHeight);
+    }
+	
+$(".reset").bind("click", function() {
+  $("input[type=text], textarea").val("");
+});
+
+
+$("#reset").on("click", function(){
+
+
+$('#age').val('');
+$('#gender').val('');
+
+$('#sym').val('');
+
+
+$('#log').val('');
+
+
+
+                
+            })
+            
+
+
+$("#calc").on("click", function(){
+
+
+//var str = "welcome to TMT interpretation";
+     // var hl = str.bold();
+     // write_log(''+hl+'.');
+      
+   var age = parseFloat( $('#age').val());
+var gender = $("input[name='gender']:checked").val();
+   
+      var pain = $("input[name='sym']:checked").val();     
+
+
+var sex = gender
+      
+    
+
+      
+      write_log("\n") ;
+      
+       
+      
+      
+      
+      
+          
+      
+       
+        
+        
+          
+      
+       
+          
+              
+	
+	
+          
+              
+               
+
+
+
+
+
+       
+        
+          
+      
+      
+      
+
+function pretest(age,sex,pain,sen,spec){
+
+var ptp = 0
+
+if(age <40 && sex=="male" && pain == "non"){ var ptp = 4 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "non"){ var ptp = 13 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "non"){ var ptp = 20 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "non"){ var ptp = 27 }
+
+
+
+
+if(age <40 && sex=="female" && pain == "non"){ var ptp = 2 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "non"){ var ptp = 3 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "non"){ var ptp = 7 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "non"){ var ptp = 14 }
+
+
+
+if(age <40 && sex=="female" && pain == "atyp"){ var ptp = 12 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "atyp"){ var ptp = 22 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "atyp"){ var ptp = 31 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "atyp"){ var ptp = 51 }
+
+
+if(age <40 && sex=="male" && pain == "atyp"){ var ptp = 34 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "atyp"){ var ptp = 51 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "atyp"){ var ptp = 65 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "atyp"){ var ptp = 72 }
+
+
+
+if(age <40 && sex=="male" && pain == "typ"){ var ptp = 76 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "typ"){ var ptp = 87 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "typ"){ var ptp = 93 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "typ"){ var ptp = 94 }
+
+
+if(age <40 && sex=="female" && pain == "typ"){ var ptp = 26 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "typ"){ var ptp = 55 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "typ"){ var ptp = 73 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "typ"){ var ptp = 86 }
+
+
+var nlr = (100 -sen)/spec
+
+var plr = sen/(100 - spec)
+
+var ppv = 100*plr*ptp /(100 +(plr-1)*ptp)
+
+var npv = 100*nlr*ptp /(100 +(nlr-1)*ptp)
+
+
+return [ptp,ppv,npv]
+
+
+}
+
+function pretesta(age,sex,pain,sen,spec){
+
+var ptp = 0
+
+if(age <40 && sex=="male" && pain == "non"){ var ptp = 17.7 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "non"){ var ptp = 24.8 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "non"){ var ptp = 33.6 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "non"){ var ptp = 43.7 }
+
+if(age >=70 && age<80 && sex=="male" && pain == "non"){ var ptp = 54.4 }
+if(age >80 && sex=="male" && pain == "non"){ var ptp = 64.6 }
+
+
+
+
+if(age <40 && sex=="female" && pain == "non"){ var ptp = 5.3 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "non"){ var ptp = 8 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "non"){ var ptp = 11.7 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "non"){ var ptp = 16.9 }
+
+if(age >=70 && age<80 && sex=="female" && pain == "non"){ var ptp = 23.8 }
+if(age >80 && sex=="female" && pain == "non"){ var ptp = 32.3 }
+
+
+
+
+if(age <40 && sex=="female" && pain == "atyp"){ var ptp = 9.6 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "atyp"){ var ptp = 14 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "atyp"){ var ptp = 20 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "atyp"){ var ptp = 27.7 }
+
+if(age >=70 && age<80 && sex=="female" && pain == "atyp"){ var ptp = 37 }
+if(age >80 && sex=="female" && pain == "atyp"){ var ptp = 47.4 }
+
+
+
+if(age <40 && sex=="male" && pain == "atyp"){ var ptp = 28.9 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "atyp"){ var ptp = 38.4 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "atyp"){ var ptp = 48.9 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "atyp"){ var ptp = 59.4 }
+
+if(age >=70 && age<80 && sex=="male" && pain == "atyp"){ var ptp = 69.2 }
+if(age >80 && sex=="male" && pain == "atyp"){ var ptp = 77.5 }
+
+
+
+
+if(age <40 && sex=="male" && pain == "typ"){ var ptp = 59.1 }
+
+if(age >=40 && age<50 && sex=="male" && pain == "typ"){ var ptp = 68.9 }
+
+if(age >=50 && age<60 && sex=="male" && pain == "typ"){ var ptp = 77.3 }
+
+if(age >=60 && age<70 && sex=="male" && pain == "typ"){ var ptp = 83.9 }
+
+if(age >=70 && age<80 && sex=="male" && pain == "typ"){ var ptp = 88.9 }
+if(age >80 && sex=="male" && pain == "typ"){ var ptp = 92.5 }
+
+
+
+if(age <40 && sex=="female" && pain == "typ"){ var ptp = 27.5 }
+
+if(age >=40 && age<50 && sex=="female" && pain == "typ"){ var ptp = 36.7 }
+
+if(age >=50 && age<60 && sex=="female" && pain == "typ"){ var ptp = 47.1 }
+
+if(age >=60 && age<70 && sex=="female" && pain == "typ"){ var ptp = 57.7 }
+
+if(age >=70 && age<80 && sex=="female" && pain == "typ"){ var ptp = 67.7 }
+if(age >80 && sex=="female" && pain == "typ"){ var ptp = 76.3 }
+
+var nlr = (100 -sen)/spec
+
+var plr = sen/(100 - spec)
+
+var ppv = 100*plr*ptp /(100 +(plr-1)*ptp)
+
+var npv = 100*nlr*ptp /(100 +(nlr-1)*ptp)
+
+
+return [ptp,ppv,npv]
+
+
+
+
+}
+
+function regress(age,sex,pain,sen,spec){
+
+var a = age 
+
+var b = 0
+var c = 0
+var d = 0
+
+if(sex=="male"){var b=1}
+if(pain=="typ"){var c=1}
+
+if(pain=="atyp"){var d=1}
+
+
+var ptplo = -4.37+0.03*a + 1.124*b + 1.378*c + 0.322*d
+
+var ptphi = -4.37+0.05*a + 1.556*b + 2.43*c + 0.951*d
+
+
+
+var ptpmod = -4.37+0.04*a + 1.34*b + 1.91*c + 0.64*d
+
+var prptplo = 100*(1/(1+Math.exp(-ptplo))).toFixed(3)
+
+var prptpmod = 100*(1/(1+Math.exp(-ptpmod))).toFixed(3)
+
+var prptphi = 100*(1/(1+Math.exp(-ptphi))).toFixed(3)
+
+
+var nlr = (100 -sen)/spec
+
+var plr = sen/(100 - spec)
+
+var ppvhi = 100*plr*prptphi /(100 +(plr-1)*prptphi)
+var npvhi = 100*nlr*prptphi /(100 +(nlr-1)*prptphi)
+
+var ppvlo = 100*plr*prptplo /(100 +(plr-1)*prptplo)
+
+var npvlo = 100*nlr*prptplo /(100 +(nlr-1)*prptplo)
+
+var ppvmod = 100*plr*prptpmod /(100 +(plr-1)*prptpmod)
+
+var npvmod = 100*nlr*prptpmod /(100 +(nlr-1)*prptpmod)
+
+
+
+
+return [prptplo,prptpmod,prptphi,ppvlo,ppvmod,ppvhi,npvlo,npvmod,npvhi]
+
+}
+
+      var df = pretest(age = age,sex=gender,pain=pain,sen=65,spec=75)
+var dg = pretesta(age = age,sex=gender,pain=pain,sen=65,spec=75)
+var dh = regress(age = age,sex=gender,pain=pain,sen=65,spec=75)
+
+write_log('PRETEST PROBABILITY OF OBSTRUCTIVE CAD .'+"\n")
+
+     write_log('.The prior test probability  of significant CAD on Coronary Angiography taking into account patient age,sex and symptoms according to Diamond-Forrester Model is '+df[0]+'percent.'+"\n")  
+
+ write_log('The prior  probability  according to updated Diamond-Forrester Model used in European Society of Cardiology Guidelines[2013] is '+dg[0]+'percent.'+"\n")  
+
+  write_log('The prior risk according to Random Effects Regreesion Model used by T Genders et al[2013] is '+dh[1].toFixed(2)+'('+dh[0].toFixed(2)+'-'+dh[2].toFixed(2)+') percent .'+"\n")  
+
+write_log('IF THE  TREADMILL EXERCISE STRESS TEST IS POSITIVE .'+"\n")
+
+      
+     write_log('.The prior test probability  of significant CAD on Coronary Angiography taking into account patient age,sex and symptoms according to Diamond-Forrester Model is '+df[0]+' percent and post test probability has increased to '+df[1].toFixed(2)+' percent .'+"\n")  
+
+ write_log('The prior  probability  according to updated Diamond-Forrester Model used in European Society of Cardiology Guidelines[2013] is '+dg[0]+' percent and post test probability has increased to '+dg[1].toFixed(2)+' percent .'+"\n")  
+
+  write_log('The prior risk according to Random Effects Regreesion Model used by T Genders et al[2013] is '+dh[1].toFixed(2)+'('+dh[0].toFixed(2)+'-'+dh[2].toFixed(2)+') percent with and post test probability has increased to '+dh[4].toFixed(2)+'('+dh[3].toFixed(2)+'-'+dh[5].toFixed(2)+') percent .'+"\n")  
+
+
+      
+write_log('IF THE  TREADMILL EXERCISE STRESS TEST IS NEGATIVE .'+"\n")
+
+    write_log('The prior test probability of significant CAD on Coronary Angiography taking into account patient age,sex and symptoms according to Diamond-Forrester Model assuming a sensitivity of 65 percent and specificity of 75% for treadmill exercise test is '+df[0]+' percent and post test probability has decreased to '+df[2].toFixed(2)+' percent .'+"\n")  
+
+ write_log('The prior  probability  according to updated Diamond-Forrester Model used in European Society of Cardiology Guidelines[2013] is '+dg[0]+' percent and post test probability has decreased to '+dg[2].toFixed(2)+' percent .'+"\n")  
+
+  write_log('The prior risk according to Random Effects Regreesion Model used by T Genders et al[2013] is '+dh[1].toFixed(2)+'('+dh[0].toFixed(2)+'-'+dh[2].toFixed(2)+') percent with and post test probability has decreased to '+dh[7].toFixed(2)+'('+dh[6].toFixed(2)+'-'+dh[8].toFixed(2)+') percent .'+"\n")  
+
+
+      
+
+
+      
+          })   
+  })
+
+</script>
+
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
+
+
